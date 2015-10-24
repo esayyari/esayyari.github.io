@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>DISTIQUE by esayyari</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">DISTIQUE</h1>
+      <h2 class="project-tagline">DISTIQUE by Erfan Sayyari</h2>
+    </section>
+
+    <section class="main-content">
+      <h3>
+<a id="distique" class="anchor" href="#distique" aria-hidden="true"><span class="octicon octicon-link"></span></a>DISTIQUE</h3>
+
+<p>DISTIQUE is a python based tool to infer species trees from gene trees. It is a forced acronym for Distance-based Inference of Species Trees using Induced Quartet Elements. The draft paper is available at <a href="">paper</a>, and the supplementary material available at <a href="">supplementary</a>.</p>
+
+<p>Its basic idea is to infer the species tree from gene trees by computing a distance between two species from the set of quartets that include the two species. We have found ways to do this in a statistically consistent manner and are exploring ways to make this run in quadratic running time.   </p>
+
+<h3>
+<a id="how-distique-infers-species-trees" class="anchor" href="#how-distique-infers-species-trees" aria-hidden="true"><span class="octicon octicon-link"></span></a>How DISTIQUE infers species trees</h3>
+
+<p>It first finds a distance matrix based on the gene trees' quartets, and then infers the species trees using a distance-based method like FASTME or PhyD*.</p>
+
+<h3>
+<a id="how-to-install-distique" class="anchor" href="#how-to-install-distique" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install DISTIQUE</h3>
+
+<p>You could install DISTIQUE in a couple of steps:<br>
+1. Clone to <a href="https://github.com/esayyari/DISTIQUE">DISTIQUE git repository</a> or download  <a href="">this zip file</a>.<br>
+2. Then you need to set environmental variable WS_HOME to the directory under which this "DISTIQUE" repository is placed 
+3. There are a couple of dependencies that you need to install at this step as well. </p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<ol>
+<li>FASTME 2.0 is now available at <a href="http://www.atgc-montpellier.fr/fastme/binaries.php">this link</a>. <a href="http://www.atgc-montpellier.fr/fastme/binaries.php">FASTME</a> is a distance based method that produces species trees based on the provided distance matrix. Put it under your WS_HOME. </li>
+<li>PhyD* is another distance based method that could handle missing values in distance matrix reasonably. You could download it from <a href="http://www.atgc-montpellier.fr/phyd/binaries.php">this link</a>. Then put it under you WS_HOME.<br>
+</li>
+<li>Quartet code from <a href="http://jensjohansen.com/thesis/">this thesis</a>. Make sure that you set the QUARTETS flag to "1" for compiling it. After compilation put the executable code quart_bin under DISTIQUE/bin.<br>
+</li>
+<li>The set of tools at <a href="https://github.com/smirarab/global">this git repository</a>. They are written in different languages, but installing it is supper easy.<br>
+</li>
+<li>DendroPy 4.0.3, which is a Python library for phylogenetic computing.</li>
+</ol>
+
+<h3>
+<a id="how-distique-works" class="anchor" href="#how-distique-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How DISTIQUE works</h3>
+
+<p>The main file to use DISTIQUE is available under DISTIQUE/src/utils/distique.py  </p>
+
+<p>Usage: python distique.py [-h (show help)] [-f FILENAME] [-g GT (read gene trees from GT)] [-o OUT (working directory)] [-t THR (min majority consensus threshold, default is 0.5)] [-m METHOD (The method to compute the distance of taxa. The default is prod)] [ -v VERBOSE]  </p>
+
+<h3>
+<a id="datasets" class="anchor" href="#datasets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Datasets</h3>
+
+<p>There are mainly three datasets that we used in this paper.<br>
+1. <a href="">11-taxon dataset</a>. This dataset contains gene trees, and true species trees<br>
+2. <a href="">avian dataset</a>. This dataset contains estimated gene trees, true gene trees, and true species tree<br>
+3. <a href="">mammalian dataset</a>. This dataset contains true gene trees, estimated gene trees and true species tree  </p>
+
+<h3>
+<a id="biological-dataset" class="anchor" href="#biological-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Biological dataset</h3>
+
+<p>We reanalyze the avian biological dataset of ED Jarvis et. al. available at paper:<br>
+Jarvis, Erich D., et. al. "Phylogenomic analyses data of the avian phylogenomics project." GigaScience 4.1 (2015): 1-9.</p>
+
+<h3>
+<a id="spieces-trees" class="anchor" href="#spieces-trees" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spieces trees</h3>
+
+<p>We now publish the species trees inferred using the following methods. For more information look at <a href="">draft paper</a>.<br>
+1. <a href="">DISTIQUE-AAD</a><br>
+2. <a href="">DISTIQUE-AMD</a><br>
+2. <a href="">ASTRID (NJst)</a><br>
+3. <a href="">ASTRAL</a><br>
+4. <a href="">RAxML</a>  </p>
+
+<h3>
+<a id="report-bugs" class="anchor" href="#report-bugs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Report bugs</h3>
+
+<p>contact <a href="https://github.com/esayyari" class="user-mention">@esayyari</a> (<a href="mailto:esayyari@eng.ucsd.edu">esayyari@eng.ucsd.edu</a>).</p>
+
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
