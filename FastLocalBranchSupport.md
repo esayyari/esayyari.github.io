@@ -39,7 +39,7 @@ posterior probability is implemented as a new feature in ASTRAL.\
 ### <span id="how-to-install-ASTRAL">[<span class="octicon octicon-link"></span>](#how-to-install-ASTRAL)</span>How to install ASTRAL
 
 The installation instruction and dependencies of the ASTRAL is available
-at \[ASTRAL\] (https://github.com/smirarab/ASTRAL/tree/posteval). Use
+at [ASTRAL](https://github.com/smirarab/ASTRAL/tree/posteval). Use
 the version available at posteval branch.
 
 ### <span id="how-to-score-species-tree-using-astral">[<span class="how-to-score-species-tree-using-astral"></span>](#how-distique-works)</span>How to score species tree using ASTRAL
