@@ -1,1 +1,53 @@
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div class="section page-header">
+<h1 id="FastLocalBranchSupport" class="project-name">Fast Local Branch Support</h1>
+<h2 id="FastLocalBranchSupport-by-erfan-sayyari" class="project-tagline">Fast Local Branch Support by Erfan Sayyari</h2>
+</div>
+<div class="section main-content">
+<h3 id="introduction"><span id="Introduction"><a href="#Introduction"><span class="octicon octicon-link"></span></a></span>Introduction</h3>
+<p>Species tree reconstruction is complicated by effects of Incomplete Lineage Sorting (ILS), commonly modeled by the multi-species coalescent model. While there has been substantial progress in developing methods that estimate a species tree given a collection of gene trees, less attention has been paid to fast and accurate methods of quantifying support. In this paper, we propose a fast algorithm to compute quartet-based support for each branch of a given species tree with regard to a given set of gene trees. We then show how the quartet support can be used in the context of the multi-species coalescent model to compute i) the local posterior probability that the branch is in the species tree and ii) the length of the branch in coalescent units. We evaluate the precision and recall of the local posterior probability on a wide set of simulated and biological data, and show that it has very high precision and improved recall compared to multi-locus bootstrapping. The estimated branch lengths are highly accurate when gene trees have little error, but are underestimated when gene tree estimation error increases. Computation of both branch length and local posterior probability is implemented as a new feature in ASTRAL. The draft paper is available at <a href="">paper</a>, and the supplementary material is available at <a href="">supplementary</a>*.</p>
+<h3 id="how-astral-calculates-posterior-probability-for-species-trees"><span id="how-ASTRAL-calculates-posterior-probability-for-species-trees"><a href="#hhow-ASTRAL-calculates-posterior-probability-for-species-trees"><span class="octicon octicon-link"></span></a></span>How ASTRAL calculates posterior probability for species trees</h3>
+<h3 id="how-to-install-astral"><span id="how-to-install-ASTRAL"><a href="#how-to-install-ASTRAL"><span class="octicon octicon-link"></span></a></span>How to install ASTRAL</h3>
+<p>The installation instruction and dependencies of the ASTRAL is available at [ASTRAL] (https://github.com/smirarab/ASTRAL/tree/posteval). Use the version available at posteval branch.</p>
+<h3 id="how-to-score-species-tree-using-astral"><span id="how-to-score-species-tree-using-astral"><a href="#how-distique-works"><span class="how-to-score-species-tree-using-astral"></span></a></span>How to score species tree using ASTRAL</h3>
+<p>We used <a href="https://github.com/smirarab/ASTRAL/tree/posteval">ASTRAL</a> version 4.9.1 for scoring and computing the branch length of the trees. To have posterior probabilities of branches of main species tree and 2 other alternatives we used:<br />
+java −Xmx2000M −jar astral .4.9.1.jar −i [GENE TREES] −q [SPECIES TREE] −t 4<br />
+To compute the branch lengths of main species tree we used the MAP solution with the command:<br />
+java −Xmx2000M −jar astral .4.9.1.jar −i [GENE TREES] −q [SPECIES TREE] −t 2<br />
+To compute the bootstrap support of the alternative topologies we used:<br />
+java −Xmx2000M −jar astral .4.9.1.jar −i [BS-replicates] −q [SPECIES TREE] −t 5<br />
+</p>
+<h3 id="datasets"><span id="datasets"><a href="#datasets"><span class="octicon octicon-link"></span></a></span>Datasets</h3>
+<p>There are mainly two simulated datasets that we used in this paper.<br />
+ 1. <a href="https://drive.google.com/open?id=0B16sMwDmKEuuUnkzd3EzVlZhcDA">ASTRALII dataset</a>. This dataset contains estimated gene trees, true gene trees, true species trees, and infered species trees with ASTRAL, RAxML, and NJST. The branch length estimations available at <a href="https://drive.google.com/open?id=0B16sMwDmKEuuRElQSzBxaGFPZEU">ASTRALII-BL</a>. Also the posterior probability estimate files available at <a href="https://drive.google.com/open?id=0B16sMwDmKEuuOVRGSGc5dERmTUU">ASTRALII-PP</a><br />
+ 2. <a href="https://drive.google.com/open?id=0B16sMwDmKEuuTE9ZcC1aVWREUk0">avian dataset</a>. This dataset contains true gene trees, estimated gene trees, true species trees, and estimated species trees. It also contains bootstrap replicates and the branch lenghths and posterior probability estimation files. The results' csv files are available at <a href="https://drive.google.com/open?id=0B16sMwDmKEuuQWtocmMtWmhMejg">results</a></p>
+<h3 id="biological-datasets"><span id="biological-datasets"><a href="#biological-datasets"><span class="octicon octicon-link"></span></a></span>Biological datasets</h3>
+<p>In this paper, we analyzed 4 different biological datasets. The results and the datasets are available at <a href="https://drive.google.com/open?id=0B16sMwDmKEuucTV4VnpTVlR1dXM">Biological dataset</a>:<br />
+1. Avian biological dataset of Jarvis et. al. available at paper:<br />
+ Jarvis, Erich D., et. al. &quot;Phylogenomic analyses data of the avian phylogenomics project.&quot; GigaScience 4.1 (2015): 1-9.<br />
+2. The dataset analyzed by Xi et. al. available at paper:<br />
+Xi, Zhenxiang, Liang Liu, Joshua S Rest, and Charles C. Davis. “Coalescent versus Concatenation Methods and the Placement of Amborella as Sister to Water Lilies.” Systematic Biology 63, no. 6 (November 1, 2014): 919–932. doi:10.1093/sysbio/syu055.<br />
+3. The 1KP dataset analyzed by Naim Matasci et. al. published at:<br />
+Matasci, N., Hung, L.H., Yan, Z., Carpenter, E.J., Wickett, N.J., Mirarab, S., Nguyen, N., Warnow, T., Ayyampalayam, S., Barker, M. and Burleigh, J.G., 2014. Data access for the 1,000 Plants (1KP) project. GigaScience, 3(1), pp.1-10.<br />
+4. The dataset analyzed by Prum et. al. available at:<br />
+Prum, R.O., Berv, J.S., Dornburg, A., Field, D.J., Townsend, J.P., Lemmon, E.M. and Lemmon, A.R., 2015. A comprehensive phylogeny of birds (Aves) using targeted next-generation DNA sequencing. Nature.</p>
+<h3 id="report-bugs"><span id="report-bugs"><a href="#report-bugs"><span class="octicon octicon-link"></span></a></span>Report bugs</h3>
+<p>contact <span class="citation">[@esayyari]</span>(https://github.com/esayyari) (<script type="text/javascript">
+<!--
+h='&#x65;&#110;&#x67;&#46;&#x75;&#x63;&#x73;&#100;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#x65;&#x73;&#x61;&#x79;&#x79;&#x61;&#114;&#x69;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x65;&#x73;&#x61;&#x79;&#x79;&#x61;&#114;&#x69;&#32;&#x61;&#116;&#32;&#x65;&#110;&#x67;&#32;&#100;&#x6f;&#116;&#32;&#x75;&#x63;&#x73;&#100;&#32;&#100;&#x6f;&#116;&#32;&#x65;&#100;&#x75;</noscript>).</p>
+<p><span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span></p>
+</div>
+</body>
+</html>
