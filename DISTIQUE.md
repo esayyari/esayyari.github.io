@@ -102,12 +102,10 @@ to find the average quartet table. Default is mean.)\] \[ -v VERBOSE\]
 ### <span id="datasets">[<span class="octicon octicon-link"></span>](#datasets)</span>Datasets
 
 There are mainly three datasets that we used in this paper.\
- 1. [avian
-dataset](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuudi0yV1JyT0c5NEk/view?usp=sharing).
+ 1. [avian dataset]().
 This dataset contains estimated gene trees, true gene trees, and true
 species tree\
- 2. [mammalian
-dataset](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuuYVBBTmxlcnVPYkE/view?usp=sharing).
+ 2. [mammalian dataset]().
 This dataset contains true gene trees, estimated gene trees and true
 species tree
 
@@ -119,20 +117,18 @@ paper:\
 phylogenomics project." GigaScience 4.1 (2015): 1-9.
 
 The resulting species trees are available at [biological species
-trees](https://drive.google.com/file/d/0B16sMwDmKEuuT1JVbFZWT09Id0E/view?usp=sharing).
+trees]().
 ### <span id="spieces-trees">[<span class="octicon octicon-link"></span>](#spieces-trees)</span>Spieces trees
 
-The species trees inferred using the following methods are provided. For
-more information look at [draft
-paper](https://raw.githubusercontent.com/esayyari/esayyari.github.io/master/main-draft.pdf).\
+The species trees inferred using the following methods are provided. \
  1.
-[DISTIQUE-AAD](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuuN184b2w5RkZ1YTQ/view?usp=sharing)\
+[DISTIQUE-AAD]()\
  2.
-[DISTIQUE-AMD](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuuUGVIWEpUZ1V3OU0/view?usp=sharing)\
+[DISTIQUE-AMD]()\
  2. [ASTRID
-(NJst)](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuuR2hkMFZEaG9DMmc/view?usp=sharing)\
+(NJst)]()\
  3.
-[ASTRAL](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuuZWxFMnU0RzhWTTg/view?usp=sharing)\
+[ASTRAL]()\
 
 ### <span id="report-bugs">[<span class="octicon octicon-link"></span>](#report-bugs)</span>Report bugs
 
