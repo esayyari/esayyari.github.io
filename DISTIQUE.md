@@ -72,34 +72,37 @@ taxa. The default is prod)\] \[-a AV (The average method
 to find the average quartet table. Default is mean.)\] \[ -v VERBOSE\]
 
 The Distance-Sum version of DISTIQUE is available under DISTIQUE/src/utils/distique-v5.py
-Usage: python distique-2.py \[-h (show help)\] \[-f FILENAME
+Usage: python distique-v5.py \[-h (show help)\] \[-f FILENAME
 (pre-computed quartet table)\] \[-g GT (read gene trees from GT)\] \[-o
 OUT (working directory)\] \[-t THR (min majority consensus threshold,
 default is 0.5)\] \[-m METHOD (The method to compute the distance of
 taxa. The default is prod)\] \[-a AV (The average method
 to find the average quartet table. Default is mean.)\] \[ -v VERBOSE\]
-\[-n NUM, --numStep=NUM (the number of anchors, default is 2)\]
-\[-u SUMPROG  (The summerize method program to find species tree from
-                        distance matrix. The options are ninja, fastme, phydstar. Default is fastme)
-  -z SUMPROGOPTION      The distance method to build the tree. If sumProg is
-                        set to fastme the options are TaxAdd_(B)alME (-s),
-                        TaxAdd_(B2)alME (-n), TaxAdd_(O)LSME (-s),
-                        TaxAdd_(O2)LSME (-n), B(I)ONJ (default), (N)J. The
-                        default in this case is B(I)ONJ. if the  sumProg is
-                        set to phydstar, the options are BioNJ, MVR, and NJ.
-                        The default is BioNJ.\]
+\[-n NUM, --numStep=NUM (#rounds of anchoring, default is 2)\]
+\[-u SUMPROG  (The summerize method program to build species tree from distance matrix. Default is fastme)\]
+\[-z SUMPROGOPTION  (The distance method to build the tree.)\]
+
+
+The Tree-Sum version of DISTIQUE is available under DISTIQUE/src/utils/distique-v8.py
+Usage: python distique-v8.py \[-h (show help)\] \[-f FILENAME
+(pre-computed quartet table)\] \[-g GT (read gene trees from GT)\] \[-o
+OUT (working directory)\] \[-t THR (min majority consensus threshold,
+default is 0.5)\] \[-m METHOD (The method to compute the distance of
+taxa. The default is prod)\] \[-a AV (The average method
+to find the average quartet table. Default is mean.)\] \[ -v VERBOSE\]
+\[-n NUM, --numStep=NUM (#rounds of anchoring, default is 2)\]
+\[-u SUMPROG  (The summerize method program to build species tree from distance matrix. Default is fastme)\]
+\[-z SUMPROGOPTION  (The distance method to build the tree.)\]
+
 
 ### <span id="datasets">[<span class="octicon octicon-link"></span>](#datasets)</span>Datasets
 
 There are mainly three datasets that we used in this paper.\
- 1. [11-taxon
-dataset](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuucVNHbk1Ocld2dFU/view?usp=sharing).
-This dataset contains gene trees, and true species trees\
- 2. [avian
+ 1. [avian
 dataset](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuudi0yV1JyT0c5NEk/view?usp=sharing).
 This dataset contains estimated gene trees, true gene trees, and true
 species tree\
- 3. [mammalian
+ 2. [mammalian
 dataset](https://drive.google.com/a/eng.ucsd.edu/file/d/0B16sMwDmKEuuYVBBTmxlcnVPYkE/view?usp=sharing).
 This dataset contains true gene trees, estimated gene trees and true
 species tree
