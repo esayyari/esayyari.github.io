@@ -62,7 +62,7 @@ a couple of dependencies that you need to install at this step as well.
 ### <span id="how-distique-works">[<span class="octicon octicon-link"></span>](#how-distique-works)</span>How DISTIQUE works
 
 The main file to use DISTIQUE is available under
-DISTIQUE/src/utils/distique-2.py
+DISTIQUE/src/utils/distique-2.py\*
 
 Usage: python distique-2.py \[-h (show help)\] \[-f FILENAME
 (pre-computed quartet table)\] \[-g GT (read gene trees from GT)\] \[-o
@@ -72,6 +72,8 @@ taxa. The default is prod)\] \[-a AV (The average method
 to find the average quartet table. Default is mean.)\] \[ -v VERBOSE\]
 
 The Distance-Sum version of DISTIQUE is available under DISTIQUE/src/utils/distique-v5.py
+
+
 Usage: python distique-v5.py \[-h (show help)\] \[-f FILENAME
 (pre-computed quartet table)\] \[-g GT (read gene trees from GT)\] \[-o
 OUT (working directory)\] \[-t THR (min majority consensus threshold,
@@ -84,6 +86,8 @@ to find the average quartet table. Default is mean.)\] \[ -v VERBOSE\]
 
 
 The Tree-Sum version of DISTIQUE is available under DISTIQUE/src/utils/distique-v8.py
+
+
 Usage: python distique-v8.py \[-h (show help)\] \[-f FILENAME
 (pre-computed quartet table)\] \[-g GT (read gene trees from GT)\] \[-o
 OUT (working directory)\] \[-t THR (min majority consensus threshold,
