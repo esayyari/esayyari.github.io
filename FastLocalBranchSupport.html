@@ -13,7 +13,7 @@
 <h4 id="note-the-following-commands-are-used-for-latest-version-of-the-paper.-the-next-set-of-commands-are-the-commands-used-with-primary-version-of-paper.-note-that-we-resolved-some-bugs-for-latest-version-of-paper.-you-would-find-the-details-of-the-older-versions-at-arxiv.">Note: The following commands are used with the published version of the paper. The next set of commands are the commands used with primary version of paper. Note that an earlier version of the paper (available at <a href="https://arxiv.org/abs/1601.07019v1">arXiv</a>) had a bug with estimating the branch lengths. Our final version fixed those issues. As of 05/10/2016, we have added the commands for the correct version to this website, but we keep reporting the previous version commands for the sake of completeness. </h4>
 <h4 id="latest-version-of-paper">Latest version of paper: (<a href="http://mbe.oxfordjournals.org/content/early/2016/04/15/molbev.msw079.abstract">MBE</a>)</h4> 
 <p>We used <a href="https://github.com/smirarab/ASTRAL/tree/posteval">ASTRAL (posteval)</a> version 4.9.1 for scoring and <a href="https://github.com/smirarab/ASTRAL/tree/master">ASTRAL (master)</a> version 4.9.8 for computing the branch length of the trees. 
-
+<br />
 To have posterior probabilities of branches of main species tree and 2 other alternatives we used:<br />
  <a href="https://github.com/smirarab/ASTRAL/tree/posteval">posteval</a> java -Xmx2000M -jar astral.4.9.1.jar -i [GENE TREES] -q [SPECIES TREE] -t 4<br />
  To compute the branch lengths of main species tree we used the MAP solution with the command:<br />
@@ -21,7 +21,9 @@ To have posterior probabilities of branches of main species tree and 2 other alt
  To compute the bootstrap support of the alternative topologies we used:<br />
  <a href="https://github.com/smirarab/ASTRAL/tree/posteval">posteval</a> java -Xmx2000M -jar astral.4.9.1.jar -i [BS-replicates] -q [SPECIES TREE] -t 5<br />
  <h4 id="latest-version-of-paper">Primary version of paper: (<a href="https://arxiv.org/abs/1601.07019v1">arXiv (v1)</a>)</h4> 
- <p>We used <a href="https://github.com/smirarab/ASTRAL/tree/posteval">ASTRAL</a> version 4.9.1 for scoring and computing the branch length of the trees. To have posterior probabilities of branches of main species tree and 2 other alternatives we used:<br />
+ <p>We used <a href="https://github.com/smirarab/ASTRAL/tree/posteval">ASTRAL</a> version 4.9.1 for scoring and computing the branch length of the trees. 
+<br />
+ To have posterior probabilities of branches of main species tree and 2 other alternatives we used:<br />
  java -Xmx2000M -jar astral.4.9.1.jar -i [GENE TREES] -q [SPECIES TREE] -t 4<br />
  To compute the branch lengths of main species tree we used the MAP solution with the command:<br />
  java -Xmx2000M -jar astral.4.9.1.jar -i [GENE TREES] -q [SPECIES TREE] -t 2<br />
