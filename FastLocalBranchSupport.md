@@ -42,24 +42,25 @@ class="octicon octicon-link"></span>](#how-to-install-ASTRAL)</span>How
 to install ASTRAL
 
 The installation instruction and dependencies of the ASTRAL is available
-at [ASTRAL](https://github.com/smirarab/ASTRAL/tree/posteval). Use the
-version available at posteval branch.
+at [ASTRAL](https://github.com/smirarab/ASTRAL/tree/master).
 
 ### <span id="how-to-score-species-tree-using-astral">[<span class="how-to-score-species-tree-using-astral"></span>](#how-distique-works)</span>How to score species tree using ASTRAL
-
-We used [ASTRAL](https://github.com/smirarab/ASTRAL/tree/posteval)
-version 4.9.1 for scoring and computing the branch length of the trees.
+#### Note: The following commands are used for latest version of the paper. The next set of commands are the commands used with primary version of paper. Note that we resolved some bugs for latest version of paper. You would find the details of the older versions at [arXiv](https://arxiv.org/abs/1601.07019v1).
+#### Latest version of paper:
+We used [ASTRAL (posteval)](https://github.com/smirarab/ASTRAL/tree/posteval)
+version 4.9.1 for scoring and [ASTRAL (master)](https://github.com/smirarab/ASTRAL/tree/master)
+version 4.9.8 for computing the branch length of the trees.
 To have posterior probabilities of branches of main species tree and 2
 other alternatives we used:\
- java −Xmx2000M −jar astral .4.9.1.jar −i \[GENE TREES\] −q \[SPECIES
+ [posteval](https://github.com/smirarab/ASTRAL/tree/posteval) java −Xmx2000M −jar astral.4.9.1.jar −i \[GENE TREES\] −q \[SPECIES
 TREE\] −t 4\
  To compute the branch lengths of main species tree we used the MAP
 solution with the command:\
- java −Xmx2000M −jar astral .4.9.1.jar −i \[GENE TREES\] −q \[SPECIES
+ [master](https://github.com/smirarab/ASTRAL/tree/master) java −Xmx2000M −jar astral.4.9.8.jar −i \[GENE TREES\] −q \[SPECIES
 TREE\] −t 2\
  To compute the bootstrap support of the alternative topologies we
 used:\
- java −Xmx2000M −jar astral .4.9.1.jar −i \[BS-replicates\] −q \[SPECIES
+ [posteval](https://github.com/smirarab/ASTRAL/tree/posteval) java −Xmx2000M −jar astral.4.9.1.jar −i \[BS-replicates\] −q \[SPECIES
 TREE\] −t 5\
 
 ### <span id="datasets">[<span class="datasets"></span>](#datasets)</span>Datasets {##datasets}
