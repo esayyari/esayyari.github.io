@@ -39,30 +39,24 @@
 </ol>
 <h3 id="how-distique-works"><span id="how-distique-works"><a href="#how-distique-works"><span class="octicon octicon-link"></span></a></span>How DISTIQUE works</h3>
 <p>The main file to use DISTIQUE is available under DISTIQUE/src/utils/distique-2.py</p>
-<p>Usage: python distique.py [-h (show help)] [-f FILENAME (pre-computed quartet table)] [-g GT (read gene trees from GT)] [-o OUT (working directory)] [-t STRAT (DISTIQUE algorithm)](AAD (1), AMD(2), distance-sum(3), or tree-sum(4))] [-y THR (he minimum frequency that consensus will use. Default is majority consensus)] [-m METHOD (The method to compute the distance of taxa. The default is prod)] [-a AV (The average method to find the average quartet table. Default is mean.)][-n NUM, --numStep=NUM (#rounds of anchoring, default is 2)] [-u SUMPROG (The summerize method program to build species tree from distance matrix. Default is fastme)] [-z SUMPROGOPTION (The distance method to build the tree.)] [ -v VERBOSE]</p>
-<p> Note that all of the results published in this paper, are produced with the older versions of <a href="https://github.com/esayyari/DISTIQUE/tree/V0">DISTIQUE ></a>. In previous versions of DISTIQUE the seed was not fixed, and there is a little randomness in the final results of the DISTIQUE-distance-sum and the DISTIQUE-tree-sum because of this. The problem will be solved with future versions of DISTIQUE.</p> 
+<p>Usage: python distique-2.py [-h (show help)] [-f FILENAME (pre-computed quartet table)] [-g GT (read gene trees from GT)] [-o OUT (working directory)] [-t THR (min majority consensus threshold, default is 0.5)] [-m METHOD (The method to compute the distance of taxa. The default is prod)] [-a AV (The average method to find the average quartet table. Default is mean.)] [ -v VERBOSE]</p>
+<p>The Distance-Sum version of DISTIQUE is available under DISTIQUE/src/utils/distique-v5.py</p>
+<p>Usage: python distique-v5.py [-h (show help)] [-f FILENAME (pre-computed quartet table)] [-g GT (read gene trees from GT)] [-o OUT (working directory)] [-t THR (min majority consensus threshold, default is 0.5)] [-m METHOD (The method to compute the distance of taxa. The default is prod)] [-a AV (The average method to find the average quartet table. Default is mean.)] [ -v VERBOSE] [-n NUM, --numStep=NUM (#rounds of anchoring, default is 2)] [-u SUMPROG (The summerize method program to build species tree from distance matrix. Default is fastme)] [-z SUMPROGOPTION (The distance method to build the tree.)]</p>
+<p>The Tree-Sum version of DISTIQUE is available under DISTIQUE/src/utils/distique-v8.py</p>
+<p>Usage: python distique-v8.py [-h (show help)] [-f FILENAME (pre-computed quartet table)] [-g GT (read gene trees from GT)] [-o OUT (working directory)] [-t THR (min majority consensus threshold, default is 0.5)] [-m METHOD (The method to compute the distance of taxa. The default is prod)] [-a AV (The average method to find the average quartet table. Default is mean.)] [ -v VERBOSE] [-n NUM, --numStep=NUM (#rounds of anchoring, default is 2)] [-u SUMPROG (The summerize method program to build species tree from distance matrix. Default is fastme)] [-z SUMPROGOPTION (The distance method to build the tree.)]</p>
 <h3 id="datasets"><span id="datasets"><a href="#datasets"><span class="octicon octicon-link"></span></a></span>Datasets</h3>
 <p>There are mainly three datasets that we used in this paper.<br />
- 1. <a href="https://drive.google.com/open?id=0B16sMwDmKEuudi0yV1JyT0c5NEk">Avian dataset</a>. This dataset contains estimated gene trees, true gene trees.<br />
- 2. <a href="https://drive.google.com/open?id=0B16sMwDmKEuuYVBBTmxlcnVPYkE">Mammalian dataset</a>. This dataset contains true gene trees, estimated gene trees.<br />
- <a href="https://drive.google.com/open?id=0B16sMwDmKEuubmFZMUFxN3piY2M"> True species trees </a> as well as the <a href="https://drive.google.com/open?id=0B16sMwDmKEuuUXJaYzRQS1gxaFU"> infered species trees</a>  using the following methods for these two datasets are also provided.<br />
- <tab> 1. DISTIQUE-AAD<br />
- <tab>2. DISTIQUE-AMD<br />
- <tab>3. DISTIQUE all pairs infered with different distance methods.<br />
- <tab>4. DISTIQUE distance sum 1, 2, 4, and 8 rounds of anchor sampling. <br />
- <tab>5. DISTIQUE tree sum with 1, 2, 4, and 8 rounds of anchor sampling.<br />
- <tab>6. ASTRID (NJst)<br />
- <tab>7. ASTRAL</a><br />
-
- 3. <a href="http://www.cs.utexas.edu/~phylo/datasets/astral2/"> Simphy dataset</a>. This dataset was also used for evaluating ASTRAL-II. All the true gene trees, estimated gene trees, estimated species trees using ASTRAL-II, and true species trees are available at <a href="http://www.cs.utexas.edu/~phylo/datasets/astral2/">ASTRAL-II</a>. <br />
-  We also provide the <a href="https://drive.google.com/open?id=0B16sMwDmKEuubjFXdGlCSTlPUVE"> infered species trees</a> using DISTIQUE all-pairs, DISTIQUE distance sum with 2 and 8 rounds of anchor sampling, and ASTRID for this dataset. <br />
-
- Note that the final stats are available at the <a href="https://drive.google.com/open?id=0B16sMwDmKEuuTTFYNVBjRDkwLTA">link</a> for avian and mammalian, and <a href="https://drive.google.com/open?id=0B16sMwDmKEuuR1lpMUNFb01wVTg">here</a> for simphy dataset. You would find the running times for the simphy dataset at the following <a href="https://drive.google.com/open?id=0B16sMwDmKEuuR1lpMUNFb01wVTg"> link</a>. </p>
+ 1. <a href="">avian dataset</a>. This dataset contains estimated gene trees, true gene trees, and true species tree<br />
+ 2. <a href="">mammalian dataset</a>. This dataset contains true gene trees, estimated gene trees and true species tree</p>
 <h3 id="biological-dataset"><span id="biological-dataset"><a href="#biological-dataset"><span class="octicon octicon-link"></span></a></span>Biological dataset</h3>
 <p>We reanalyze the avian biological dataset of Jarvis et. al. available at paper:<br />
  Jarvis, Erich D., et. al. &quot;Phylogenomic analyses data of the avian phylogenomics project.&quot; GigaScience 4.1 (2015): 1-9.</p>
-<p>The resulting species trees are available at <a href="https://drive.google.com/open?id=0B16sMwDmKEuublBoWTFiNnQ2VUE">biological species trees</a>. <span id="spieces-trees"><a href="#spieces-trees"><span class="octicon octicon-link"></span></a></span></p>
-
+<p>The resulting species trees are available at <a href="">biological species trees</a>. ### <span id="spieces-trees"><a href="#spieces-trees"><span class="octicon octicon-link"></span></a></span>Spieces trees</p>
+<p>The species trees inferred using the following methods are provided.<br />
+ 1. <a href="">DISTIQUE-AAD</a><br />
+ 2. <a href="">DISTIQUE-AMD</a><br />
+ 2. <a href="">ASTRID (NJst)</a><br />
+ 3. <a href="">ASTRAL</a><br />
  ### <span id="report-bugs"><a href="#report-bugs"><span class="octicon octicon-link"></span></a></span>Report bugs</p>
 <p>contact <span class="citation">[@esayyari]</span>(https://github.com/esayyari) (<script type="text/javascript">
 <!--
