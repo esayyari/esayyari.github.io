@@ -1,7 +1,7 @@
 # Erfan Sayyari
 
 
-I am a Ph.D candidate at University of California San Diego, and is advised by [Prof. Siavash Mirarab](http://eceweb.ucsd.edu/~smirarab/). My research includes developing methods on large-scale data with applications in computational biology. More specifically, my research focuses on developing new and fast methods of estimating species trees from gene trees, and assessing quality of phylogenies. 
+I am a Ph.D candidate at University of California San Diego, and is advised by [Prof. Siavash Mirarab](http://eceweb.ucsd.edu/~smirarab/). My research includes developing methods on large-scale data with applications in computational biology. More specifically, my research focuses on developing new and fast methods of estimating species trees from gene trees, and assessing quality of phylogenies. Here is my my __[CV]()__. 
 
 ## Publications
 
