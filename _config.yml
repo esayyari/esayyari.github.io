@@ -6,3 +6,13 @@ theme: jekyll-theme-minimal
 
 gems:
   - jekyll-mentions
+
+
+title: main
+description: main by Erfan Sayyari
+google_analytics:
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
