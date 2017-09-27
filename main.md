@@ -16,6 +16,5 @@ I am a Ph.D candidate at University of California San Diego, and is advised by [
 
 I have TA'ed several courses during my graduate studies at University of California, San Diego. My duties included holding weekly discussion sections and office hours, and grading projects, assignments, midterms and final exams. 
 
-### Undergraduate courses
 * __Undergraduate courses:__ Engineering Probability and Stats, Circuits and Systems, Probability and Random Processes
 * __Graduate courses:__ Algorithms for biological data analysis, and Random Processes
