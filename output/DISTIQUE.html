@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>DISTIQUE</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/github-markdown.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+  <body>
+    <article class="markdown-body"><section class="page-header">
+
+# DISTIQUE
+
+## DISTIQUE by Erfan Sayyari
+
+</section>
+
+<section class="main-content">
+
+<h3 id="distique"><a class="header-link" href="#distique"></a>DISTIQUE</h3>
+<p>DISTIQUE is a python based tool for inferring species trees from gene trees. It is a forced acronym for Distance-based Inference of Species Trees using Induced QUartet Elements.</p>
+<p>The basic idea behind DISTIQUE is to infer the species tree from gene trees by computing a distance between two species from the set of quartets that include the two species. We have found ways to do this in a statistically consistent manner. DISTIQUE introduces a family of distance-based tree inference methods, with running times ranging between quadratic to quartic in the number of leaves</p>
+<h3 id="how-distique-infers-species-trees"><a class="header-link" href="#how-distique-infers-species-trees"></a>How DISTIQUE infers species trees</h3>
+<p>It first finds a distance matrix based on the quartet trees induced by gene trees, and then infers the species trees using a distance-based method like FastME[^fastme] or PhyD* [^phyd].</p>
+<h3 id="how-to-install-distique"><a class="header-link" href="#how-to-install-distique"></a>How to install DISTIQUE</h3>
+<p>You could install DISTIQUE in a couple of steps:  </p>
+<ol class="list">
+<li>Clone to <a href="https://github.com/esayyari/DISTIQUE">DISTIQUE git repository</a> or download <a href="https://github.com/esayyari/DISTIQUE/archive/master.zip">this zip file</a>.  </li>
+<li>Then you need to set environmental variable <strong>WS_HOME</strong> to the directory under which this &quot;DISTIQUE&quot; repository is placed. There are a couple of dependencies that you need to install at this step as well.</li>
+</ol>
+<h3 id="dependencies"><a class="header-link" href="#dependencies"></a>Dependencies</h3>
+<ol class="list">
+<li><strong>FASTME 2.0</strong> is now available at <a href="http://www.atgc-montpellier.fr/fastme/binaries.php">this link</a>. FastME is a distance based method that produces species trees based on the provided distance matrix. Put it under your <strong>WS_HOME</strong>.</li>
+<li>.  <strong><a href="https://pythonhosted.org/DendroPy/">DendroPy 4.0.3</a></strong>, which is a Python library for phylogenetic computing. You would install it by using the command <code>sudo pip install &quot;dendropy&gt;=4&quot;</code>. If you don&#39;t have root access, you would install <strong>DendroPy</strong> locally by using the command <code>pip install &quot;dendropy&gt;=4&quot; --user</code>.</li>
+</ol>
+<h3 id="optional-dependencies"><a class="header-link" href="#optional-dependencies"></a>Optional Dependencies</h3>
+<ol class="list">
+<li><p><strong>PhyD*</strong> is another distance based method that could handle missing values in distance matrix reasonably. You could download it from <a href="http://www.atgc-montpellier.fr/phyd/binaries.php">this link</a>, then put it under your <strong>WS_HOME</strong>. The default distance based software is FastME.</p>
+</li>
+<li><p>Quartet code from <a href="http://jensjohansen.com/thesis/">this thesis</a>. Make sure that you set the QUARTETS compiler flag. After compilation place the executable code <strong>quart_bin</strong> under <strong>DISTIQUE/bin</strong>. This code is used for <strong>DISTIQUE-all-pairs</strong>.</p>
+</li>
+<li><p>The set of tools at <a href="https://github.com/smirarab/global">this git repository</a>. They are written in different languages, and different versions of Dendropy. Download or clone this repository and put it under your <strong>WS_HOME</strong>. Some of the bash script tools in DISTIQUE depend on these set of tools.</p>
+</li>
+</ol>
+<h3 id="how-distique-works"><a class="header-link" href="#how-distique-works"></a>How DISTIQUE works</h3>
+<p>The main file to use DISTIQUE is available under DISTIQUE/src/utils/distique-2.py</p>
+<pre class="hljs"><code>    Usage: distique.py [options]
+    Options:
+          -h, <span class="hljs-comment">--help                      Show this help message and exit</span>
+         -t STRAT, <span class="hljs-comment">--strategy=STRAT        The version of DISTIQUE to be run 1 (all-paris, prod),</span>
+                                        2 (all-paris, max), 3 (Distance-sum), and 4 (Tree-
+                                        sum), default is DISTIQUE Distance-SUM (3)
+          -f FILENAME, <span class="hljs-comment">--file=FILENAME    Read quartet table from FILENAME</span>
+          -g GT, <span class="hljs-comment">--gene=GT                Read genetrees from FILENAME</span>
+          -o OUT, <span class="hljs-comment">--output=OUT              The PATH to write the generated files</span>
+          -y THR, <span class="hljs-comment">--threshold=THR            The minimum frequency that consensus will use. Default is 0.5</span>
+          -v VERBOSE, <span class="hljs-comment">--verbose=VERBOSE   Verbose</span>
+          -u SUMPROG                       The distance based program to find species tree from distance matrix.
+                                          The options are ninja, fastme, phydstar. Default is fastme
+          -z SUMPROGOPTION                 The distance method to build the tree. If sumProg is <span class="hljs-keyword">set</span> <span class="hljs-keyword">to</span> fastme 
+                                          the options <span class="hljs-keyword">are</span> TaxAdd_(B)alME (-s) (<span class="hljs-keyword">Default</span>), TaxAdd_(B2)alME (-n), 
+                                          (D) <span class="hljs-keyword">default</span> <span class="hljs-keyword">of</span> fastme, TaxAdd_(O)LSME (-s), TaxAdd_(O2)LSME (-n),
+                                          B(I)ONJ, (N)J. The <span class="hljs-keyword">default</span> <span class="hljs-keyword">in</span> this <span class="hljs-keyword">case</span> <span class="hljs-keyword">is</span> TaxAdd_(B)alME. <span class="hljs-keyword">if</span> the  
+                                          sumProg <span class="hljs-keyword">is</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">to</span> phydstar, The options <span class="hljs-keyword">are</span> BioNJ, MVR, <span class="hljs-keyword">and</span> NJ. 
+          -s SP, <span class="hljs-comment">--sp=SP                    Species tree</span>
+          -n <span class="hljs-keyword">NUM</span>, <span class="hljs-comment">--numStep=NUM            The #rounds of anchoring, default is 2</span>
+          -r OUTLIER                        The strategy <span class="hljs-keyword">for</span> outlier removal. This options <span class="hljs-keyword">is</span> <span class="hljs-keyword">only</span> effective <span class="hljs-keyword">with</span> tree-sum.
+                                          The options <span class="hljs-keyword">are</span> pairwise1, pairwise2, consensus10, <span class="hljs-keyword">or</span> consensus3. 
+                                          <span class="hljs-keyword">Default</span> <span class="hljs-keyword">is</span> consensus3
+          -x SUMMARY                        The summary method that will be used <span class="hljs-keyword">to</span> summarize inferred species trees. 
+                                          <span class="hljs-keyword">Only</span> effective <span class="hljs-keyword">with</span> tree-sum. <span class="hljs-keyword">Default</span> <span class="hljs-keyword">is</span> MRL.
+          -a AV, <span class="hljs-comment">--averagemethod=AV        The strategy to find the average quartet tables.</span>
+                                        Options <span class="hljs-keyword">are</span> geometric mean (gmean), averaging (mean),
+                                        <span class="hljs-keyword">or</span> root mean <span class="hljs-keyword">square</span> (otherwise). <span class="hljs-keyword">Default</span> <span class="hljs-keyword">is</span> mean.
+          -p MET                            The method <span class="hljs-keyword">to</span> summarize quartet results around <span class="hljs-keyword">each</span>
+                                        node, freq, <span class="hljs-keyword">or</span> <span class="hljs-keyword">log</span>, <span class="hljs-keyword">Default</span> <span class="hljs-keyword">is</span> freq
+          -l FILLMETHOD                     The method <span class="hljs-keyword">to</span> fill <span class="hljs-keyword">empty</span> cells <span class="hljs-keyword">in</span> distance <span class="hljs-keyword">tables</span>, used <span class="hljs-keyword">with</span> distance-<span class="hljs-keyword">sum</span>
+                                           <span class="hljs-keyword">or</span> tree-sum. Options <span class="hljs-keyword">are</span> const, <span class="hljs-keyword">rand</span>, <span class="hljs-keyword">or</span> normConst. <span class="hljs-keyword">Default</span> <span class="hljs-keyword">is</span> const
+          -m METHOD, <span class="hljs-comment">--distmethod=METHOD    The method to compute distances between pairs of species. </span>
+                                          Options <span class="hljs-keyword">are</span> prod (<span class="hljs-keyword">default</span>) <span class="hljs-keyword">or</span> min. </code></pre><h3 id="datasets"><a class="header-link" href="#datasets"></a>Datasets</h3>
+<p>There are mainly three datasets that we used in this paper.  </p>
+<ul class="list">
+<li><a href="https://www.ideals.illinois.edu/bitstream/handle/2142/55685/README%20for%20Mirarab%20et%20al_fixed.html?sequence=5">Avian dataset</a> dataset is a 45-taxon dataset, based on biological data, and have a single true species tree. <a href="https://drive.google.com/open?id=0B16sMwDmKEuudi0yV1JyT0c5NEk">This file</a> contains model species tree, and true and estimated gene trees. </li>
+<li><a href="https://www.ideals.illinois.edu/bitstream/handle/2142/55685/README%20for%20Mirarab%20et%20al_fixed.html?sequence=5">Mammalian</a> dataset is a 37-taxon dataset, based on biological data, and have a single true species tree. contains estimated gene trees, true gene trees. <a href="https://drive.google.com/open?id=0B16sMwDmKEuuYVBBTmxlcnVPYkE">This file</a> contains model species tree, and true and estimated gene trees. </li>
+</ul>
+<p>These two datasets used to evaluate performance of DISTIQUE on datasets with relative small number of species, varying ILS, and number of genes. For more details about these two datasets visit <a href="https://www.ideals.illinois.edu/bitstream/handle/2142/55685/README%20for%20Mirarab%20et%20al_fixed.html?sequence=5">link</a></p>
+<p>We analyzed these two datasets with different methods. Inferred species trees are available <a href="https://drive.google.com/open?id=0B16sMwDmKEuuUXJaYzRQS1gxaFU">here</a>. The methods that we used for our analyses are <strong>ASTRID (NJst)</strong>[^astrid], <strong>ASTRAL</strong>, <strong>DISTIQUE-AAD</strong>, <strong>DISTIQUE-AMD</strong>, <strong>DISTIQUE all pairs</strong> inferred with different distance methods (i.e. different methods implemented in FastME, and PhyD*), <strong>DISTIQUE distance sum</strong> with 1, 2, 4, and 8 rounds of anchor sampling around each polytomy, and <strong>DISTIQUE tree sum</strong> with 1, 2, 4, and 8 rounds of anchor sampling around each polytomy.  </p>
+<ul class="list">
+<li><a href="http://www.cs.utexas.edu/~phylo/datasets/astral2/">Simphy</a> dataset was also used for evaluating <strong>ASTRAL-II</strong> and is simulated using <a href="https://github.com/adamallo/SimPhy/">SimPhy</a> [^simphy]. True and estimated gene trees, and also true and estimated species trees using ASTRAL-II are available at <a href="http://www.cs.utexas.edu/~phylo/datasets/astral2/">ASTRAL-II</a>.<br>We also provide the <a href="https://drive.google.com/open?id=0B16sMwDmKEuubjFXdGlCSTlPUVE">inferred species trees</a> using <strong>DISTIQUE all-pairs</strong> (for some model conditions), <strong>DISTIQUE distance sum</strong> with 2 and 8 rounds of anchor sampling, and <strong>ASTRID</strong> for this dataset. </li>
+</ul>
+<p>The RF distances between true and inferred species trees are available at this <a href="https://drive.google.com/open?id=0B16sMwDmKEuuTTFYNVBjRDkwLTA">link</a> for avian and mammalian, and <a href="https://drive.google.com/open?id=0B16sMwDmKEuuR1lpMUNFb01wVTg">here</a> for simphy dataset (in csv format). You would find the running times for the <strong>simphy</strong> dataset at the following <a href="https://drive.google.com/open?id=0B16sMwDmKEuuR1lpMUNFb01wVTg">link</a>.</p>
+<h3 id="commands-and-version-numbers"><a class="header-link" href="#commands-and-version-numbers"></a>Commands and Version numbers</h3>
+<p><strong> Important Note:</strong> All of the results published in this paper, are produced with this <a href="https://github.com/esayyari/DISTIQUE/tree/V0">release</a> of DISTIQUE. In this version of DISTIQUE, a specific random seed number was not, and as a result, there is some randomness across different runs of DISTIQUE on the same exact dataset. This can translate to small changes in the final results of the DISTIQUE-distance-sum and the DISTIQUE-tree-sum algorithms. The lack of determinism typically results in very small changes. In future versions of DISTIQUE, we plan to specify a random seed number, such that the results become reproducible.</p>
+<ul class="list">
+<li><strong>AAD</strong></li>
+</ul>
+<pre class="hljs"><code>python distique.py <span class="hljs-_">-a</span> mean -m prod -t 1 -u fastme -z D -g [GENE TREES] -o [OUTPUT DIR] </code></pre><ul class="list">
+<li><strong>AMD</strong></li>
+</ul>
+<pre class="hljs"><code>python distique.py <span class="hljs-_">-a</span> mean -m prod -t 2  -u fastme -z D -g [GENE TREES] -o [OUTPUT DIR]</code></pre><ul class="list">
+<li><strong>DISTIQUE all pairs</strong> with different summary methods</li>
+</ul>
+<pre class="hljs"><code>python distique.py <span class="hljs-_">-a</span> mean -m prod -t 2  -u fastme -z D -g [GENE TREES] -o [OUTPUT DIR]</code></pre><ul class="list">
+<li><strong>DISTIQUE distance-sum</strong> </li>
+</ul>
+<pre class="hljs"><code>python distique.py <span class="hljs-_">-a</span> mean -m prod -t 3  -u fastme -z B -g [GENE TREES] -o [OUTPUT DIR]</code></pre><ul class="list">
+<li><strong>DISTIQUE tree-sum</strong></li>
+</ul>
+<pre class="hljs"><code>python distique.py <span class="hljs-_">-a</span> mean -m prod -t 4 -u fastme -z B -g [GENE TREES] -o [OUTPUT DIR]</code></pre><ul class="list">
+<li><strong>ASTRID</strong></li>
+</ul>
+<pre class="hljs"><code>python ASTRID.py −m fastme2 −i [GENE TREES] −o [OUTPUT SPECIES TREE]</code></pre><p>*<strong>ASTRAL</strong></p>
+<pre class="hljs"><code>java −Xmx2000M −jar astral.4.7.8.jar −i [GENE TREES] −o [OUTPUT SPECIES TREE]</code></pre><h3 id="biological-dataset"><a class="header-link" href="#biological-dataset"></a>Biological dataset</h3>
+<p>We reanalyze the avian biological dataset of Jarvis et. al. 
+This dataset is a dataset of 2022 supergene trees from an avian dataset.[^avian] The resulting species trees are available at <a href="https://drive.google.com/open?id=0B16sMwDmKEuublBoWTFiNnQ2VUE">biological species trees</a>.<span id="spieces-trees"><a href="#spieces-trees"><span class="octicon octicon-link"></span></a></span></p>
+<h3 id="report-bugs"><a class="header-link" href="#report-bugs"></a>Report bugs</h3>
+<p>Contact <a href="esayyari@eng.ucsd.edu">Erfan Sayyari</a></p>
+<p><span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span></p>
+<p>[^fastme]: Lefort, Vincent, Richard Desper, and Olivier Gascuel. &quot;FastME 2.0: a comprehensive, accurate, and fast distance-based phylogeny inference program.&quot; Molecular biology and evolution 32.10 (2015): 2798-2800.
+[^phyd]: Criscuolo, Alexis, and Olivier Gascuel. &quot;Fast NJ-like algorithms to deal with incomplete distance matrices.&quot; BMC bioinformatics 9.1 (2008): 166.
+[^astral]: Mirarab, Siavash, and Tandy Warnow. &quot;ASTRAL-II: coalescent-based species tree estimation with many hundreds of taxa and thousands of genes.&quot; Bioinformatics 31.12 (2015): i44-i52. <a href="https://github.com/smirarab/ASTRAL">ASTRAL</a>
+[^astrid]: Vachaspati, Pranjal, and Tandy Warnow. &quot;ASTRID: accurate species trees from internode distances.&quot; BMC genomics 16.Suppl 10 (2015): S3.<a href="https://github.com/pranjalv123/ASTRID">ASTRID</a>
+[^avian]: Jarvis, Erich D., et. al. &quot;Phylogenomic analyses data of the avian phylogenomics project.&quot; GigaScience 4.1 (2015): 1-9.
+[^simphy]: Mallo, Diego, Leonardo De Oliveira Martins, and David Posada. &quot;SimPhy: Phylogenomic Simulation of Gene, Locus, and Species Trees.&quot; Systematic biology 65.2 (2016): 334-344.</p>
+    </article>
+  </body>
+</html>
