@@ -3,7 +3,7 @@
 # Fast Local Branch Support 
 
 
-## Fast Local Branch Support by Siavash Mirarab and Erfan Sayyari 
+##### by Erfan Sayyari and Siavash Mirarab
 
 
 # Introduction
