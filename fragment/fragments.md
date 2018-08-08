@@ -17,7 +17,7 @@ We used simulated as well as biological data to study the effects of fragmentary
 ### Simulations
 
 In simulations, we study impacts of fragmentary data and the filtering strategy on the accuracy of gene trees and eventually the accuracy of the species trees. 
-Simulated dataset is avaialble [here](https://drive.google.com/open?id=1NuF0eG5cO3jxEHVoCgdIjiQ35qBQCuYv).
+Simulated dataset is available [here](https://drive.google.com/open?id=1NuF0eG5cO3jxEHVoCgdIjiQ35qBQCuYv). The simulated dataset has 50 replicates (in 50 separate folders), with 101 species (one outgroup). For each replicate, we provide original gene sequences (all-genes.phylip), and the fragments inserted version (all-genes-fragAdded.phylip). We also provide the FastTree (e.g. in FNA-genes.fragAdded-mask1sites.mask1taxa) and RAxML (e.g. in FNA-genes.fragAdded-mask1sites.mask1taxa-raxml) gene trees (using 50, 200, and 1000 genes) and the corresponding estimated species trees. Folders with __raxml__ at the end of their name contain RAxML gene trees. To indicate the filtering strategy we use this format: __mask[x%]sites.mask[y%]taxa__, which indicates that we removed all sites with less than _x%_ non-gap characters, and we removed all species that has less than _y%_ non-gap characters. 
 
 ### Biological
 
