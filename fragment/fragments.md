@@ -12,12 +12,14 @@ tree. We then investigate a simple filtering strategy where individual fragmenta
 genes but the rest of the gene is retained. Both in simulations and by reanalyzing a large insect phylotranscriptomic data
 set, we show the effectiveness of this simple filtering strategy.
 ## Experiments and Codes
+
 ##### Please note that all codes are available on [this github repository](https://github.com/esayyari/Fragments/). They use python2 or bash, and dependencies are [dendropy4](https://dendropy.org/), [nwcik utility](http://cegg.unige.ch/newick_utils) and [PASTA](https://github.com/smirarab/pasta).
 
 In this section we will describe the commands we used for generating and performing the simulations as well as the biological analyses.
 
 ### Filtering alignments
 We used  __mask-for-gt.sh__ (internally uses [PASTA](https://github.com/smirarab/pasta)) to remove alignments with lots of gap characters. 
+
 ### Generate simulated dataset
 We used __draw\_parameters.py__ (please check the comments inside the code for more information) and the following files to generate the fragmentary stats for each species in each gene.
  
@@ -56,6 +58,7 @@ This command assumes a specific structure. It assumes that the fasta file is und
 
 ## Data
 We used simulated as well as biological data to study the effects of fragmentary data on the quality of gene trees and species trees. 
+
 ### Simulations
 
 In simulations, we study impacts of fragmentary data and the filtering strategy on the accuracy of gene trees and eventually the accuracy of the species trees. 
