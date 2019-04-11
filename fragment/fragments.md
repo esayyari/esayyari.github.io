@@ -17,8 +17,7 @@ set, we show the effectiveness of this simple filtering strategy.
 
 In this section we will describe the commands we used for generating and performing the simulations as well as the biological analyses.
 
-### Filtering alignments
-We used  __mask-for-gt.sh__ (internally uses [PASTA](https://github.com/smirarab/pasta)) to remove alignments with lots of gap characters. 
+ 
 
 ### Generate simulated dataset
 We used __draw\_parameters.py__ (please check the comments inside the code for more information) and the following files to generate the fragmentary stats for each species in each gene.
@@ -29,23 +28,7 @@ We used __draw\_parameters.py__ (please check the comments inside the code for m
 
 To generate the sequence files we used __generateFragmentary.py__ passing the output of __draw\_parameters.py__. 
 
- 
 ### Inferring gene trees
-We used the following commands to infer the gene trees:
-
-```
-bash runraxml-bestML.sh [ALIGNMENT NAME WITHOUT PHYLIP OR FASTA] [DT] [GENE IDs] [labels] [GENE DIR] [NUM CPU]
-```
-
-This command assumes a specific structure. It assumes that the fasta file is under this directory:
-
-[GENE DIR]/[GENE IDs]/\[DT]-[ALIGNMENT NAME WITHOUT PHYLIP OR FASTA]/[GENE IDs]-[ALIGNMENT NAME WITHOUT PHYLIP OR FASTA].fasta
-
-* It first converts the fasta file to phylip (using __convert\_to\_phylip.sh__), and then finds the list of identical alignments in the phylip file (using __listRemovedTaxa.py__). Then [RAxML](https://cme.h-its.org/exelixis/web/software/raxml/index.html) (__raxmlHPC__) will run to remove identical alignments. For amino acid alignements (DT should be FAA), we find the best model of evolution using __ProteinModelSelection.pl__. Then __raxmlHPC-PTHREADS__ or __raxmlHPC__ (based on the number of cpus) will be used to infer the gene trees (__please change -N 20 or -N 2 at lines 89 or 91 for your usage. This number defines the number of repeats for RAxML__). Finally, it uses __addIdenticalTaxa.py__ to add back the identical species to the gene trees.
-
-* For inferring the gene trees (as well as bootstrapping) with [FastTree](http://www.microbesonline.org/fasttree/), we used this command __runraxml-fasttreeboot.sh__. It internally uses fasttree (double-precision version) and same scripts listed above.
-
-* For doing bootstrapping we used this command __runraxml-fasttree-start-boostrapping.sh__, which uses [FastTree](http://www.microbesonline.org/fasttree/) (double-precision version) internally, and the same scripts listed above.  
 
 #### RAxML 
 
@@ -81,6 +64,7 @@ and for protein alignment we use the default substitution model (JTT+CAT):
 fasttree <input_phylip> > fasttree.tre.best 2> ft.log.best
 ```
 
+### Inferring species trees
 
 #### ASTRAL
 ```
@@ -88,7 +72,7 @@ java -jar astral.4.11.1.jar -i <genetrees> -o <species_tree> > logfile 2>&1
 
 ```
 
-#### Filtering sequences
+### Filtering sequences
 We first filter sites that have less than **site\_threshold** non-gap characters and then filter the sequences that have less than **sequence\_threshold** non-gap sequences. 
 
 ```
@@ -96,15 +80,6 @@ python run_seqtools.py  -infile <input_sequence> -masksites <site_threshold> -ou
 
 python run_seqtools.py -infile <site_filtered_sequence> -filterfragments <sequence_threshold> -outfile <filtered_sequence> > <logfile> 2>&1
 ```
-
-### Miscellaneous
-* To remove third codon postions from alignments we used __remove\_3rd\_codon\_nt\_fas.sh__.
-* To convert fasta file to phylip we used __convert\_to\_phylip.sh__.
-* To generate fragmentary statistics we used __generate\_fragmentary\_stat.sh__.
-* To generate GC content statistics we used __gc-stats.py__.
-* To calculate bootstrap supports we used __draw\_support\_on\_best\_ML.sh__. 
-* We used ASTRAL version 4.11.1 to infer species trees
-* To root biological dataset we used __root-nw\_friendly.py__.
 
 ## Data
 We used simulated as well as biological data to study the effects of fragmentary data on the quality of gene trees and species trees. 
