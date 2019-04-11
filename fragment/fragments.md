@@ -23,9 +23,9 @@ We used  __mask-for-gt.sh__ (internally uses [PASTA](https://github.com/smirarab
 ### Generate simulated dataset
 We used __draw\_parameters.py__ (please check the comments inside the code for more information) and the following files to generate the fragmentary stats for each species in each gene.
  
-* __average\_branch\_lengths.csv__: averge tip-to-root distances for biological Insects gene trees
+* __average\_branch\_lengths.csv__: average tip-to-root distances for biological Insects gene trees
 * __fragmentary\_augmented.csv__: frequency of gap characters for the biological Insects dataset
-* __simulated\_average\_branch\_lengths.csv__: averge tip-to-root distances for biological Insects gene trees per each replicate.
+* __simulated\_average\_branch\_lengths.csv__: average tip-to-root distances for biological Insects gene trees per each replicate.
 
 To generate the sequence files we used __generateFragmentary.py__ passing the output of __draw\_parameters.py__. 
 
@@ -55,7 +55,7 @@ raxmlHPC -m <model> -n best -s <input_phylip> -p <seed_num> -N 10
 
 raxmlHPC-PTHREADS -T <CPU> -m <model> -n best -s <input_phylip> -p <seed_num> -N 10
 ```
-where $s is the seed number, and for NA, model is GTRGAMMA, and for amino acids we let RAxML to find the best model automatically using the command:
+where $s is the seed number, and for NA, model is GTRGAMMA, and for amino acids we let RAxML find the best model automatically using the command:
 
 
 ```
@@ -89,7 +89,7 @@ java -jar astral.4.11.1.jar -i <genetrees> -o <species_tree> > logfile 2>&1
 ```
 
 #### Filtering sequences
-We first filter sites that have less than **site\_threshold** non-gap characters, and then filter the sequences that have less than **sequence\_threshold** non-gap sequences. 
+We first filter sites that have less than **site\_threshold** non-gap characters and then filter the sequences that have less than **sequence\_threshold** non-gap sequences. 
 
 ```
 python run_seqtools.py  -infile <input_sequence> -masksites <site_threshold> -outfile <site_filtered_sequence> > <logfile> 2>&1
@@ -112,7 +112,7 @@ We used simulated as well as biological data to study the effects of fragmentary
 ### Simulations
 
 In simulations, we study impacts of fragmentary data and the filtering strategy on the accuracy of gene trees and eventually the accuracy of the species trees. 
-Simulated dataset is available [here](https://drive.google.com/open?id=1NuF0eG5cO3jxEHVoCgdIjiQ35qBQCuYv). The simulated dataset has 50 replicates (in 50 separate folders), with 101 species (one outgroup). For each replicate, we provide original gene sequences (all-genes.phylip), and the fragments inserted version (all-genes-fragAdded.phylip). We also provide the FastTree (using double precision), e.g. in FNA-genes.fragAdded-mask1sites.mask1taxa, and RAxML, e.g. in FNA-genes.fragAdded-mask1sites.mask1taxa-raxml, gene trees (using 50, 200, and 1000 genes) and the corresponding estimated species trees. Folders with __raxml__ at the end of their name contain RAxML gene trees. To indicate the filtering strategy we use this format: __mask[x%]sites.mask[y%]taxa__, which indicates that we removed all sites with less than _x%_ non-gap characters, and we removed all species that has less than _y%_ non-gap characters. 
+The simulated dataset is available [here](https://drive.google.com/open?id=1NuF0eG5cO3jxEHVoCgdIjiQ35qBQCuYv). The simulated dataset has 50 replicates (in 50 separate folders), with 101 species (one outgroup). For each replicate, we provide original gene sequences (all-genes.phylip), and the fragments inserted version (all-genes-fragAdded.phylip). We also provide the FastTree (using double precision), e.g. in FNA-genes.fragAdded-mask1sites.mask1taxa, and RAxML, e.g. in FNA-genes.fragAdded-mask1sites.mask1taxa-raxml, gene trees (using 50, 200, and 1000 genes) and the corresponding estimated species trees. Folders with __raxml__ at the end of their name contain RAxML gene trees. To indicate the filtering strategy, we use this format: __mask[x%]sites.mask[y%]taxa__, which indicates that we removed all sites with less than _x%_ non-gap characters, and we removed all species that has less than _y%_ non-gap characters. 
 
 ### Biological
 
