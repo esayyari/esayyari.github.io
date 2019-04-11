@@ -47,6 +47,56 @@ This command assumes a specific structure. It assumes that the fasta file is und
 
 * For doing bootstrapping we used this command __runraxml-fasttree-start-boostrapping.sh__, which uses [FastTree](http://www.microbesonline.org/fasttree/) (double-precision version) internally, and the same scripts listed above.  
 
+#### RAxML 
+
+
+```
+raxmlHPC -m <model> -n best -s <input_phylip> -p <seed_num> -N 10
+
+raxmlHPC-PTHREADS -T <CPU> -m <model> -n best -s <input_phylip> -p <seed_num> -N 10
+```
+where $s is the seed number, and for NA, model is GTRGAMMA, and for amino acids we let RAxML to find the best model automatically using the command:
+
+
+```
+perl ProteinModelSelection.pl <input_phylip> > ../bestModel.<alignname>
+
+model=PROTGAMMA`sed -e "s/.* //g" bestModel.<alignname>`
+
+```
+
+Please note that for the simulated dataset we used RAxML with 2 starting trees, while for biological analysis, we used 10 starting trees.
+
+#### FastTree
+
+For nucleotide alignment we use this command:
+
+```
+fasttree -gtr -gamma -nt <input_phylip> > fasttree.tre.best 2> ft.log.best
+```
+
+and for protein alignment we use the default substitution model (JTT+CAT):
+
+```
+fasttree <input_phylip> > fasttree.tre.best 2> ft.log.best
+```
+
+
+#### ASTRAL
+```
+java -jar astral.4.11.1.jar -i <genetrees> -o <species_tree> > logfile 2>&1
+
+```
+
+#### Filtering sequences
+We first filter sites that have less than **site\_threshold** non-gap characters, and then filter the sequences that have less than **sequence\_threshold** non-gap sequences. 
+
+```
+python run_seqtools.py  -infile <input_sequence> -masksites <site_threshold> -outfile <site_filtered_sequence> > <logfile> 2>&1
+
+python run_seqtools.py -infile <site_filtered_sequence> -filterfragments <sequence_threshold> -outfile <filtered_sequence> > <logfile> 2>&1
+```
+
 ### Miscellaneous
 * To remove third codon postions from alignments we used __remove\_3rd\_codon\_nt\_fas.sh__.
 * To convert fasta file to phylip we used __convert\_to\_phylip.sh__.
@@ -69,6 +119,7 @@ Simulated dataset is available [here](https://drive.google.com/open?id=1NuF0eG5c
 We studied an empirical transcriptomic data set of insects consisting of 1,478 protein-coding genes of 144 taxa, where
 27% of the alignment is gaps (Misof et al. 2014). We now share the biological sequences, gene trees and species trees:
 
+* RAxML log files are available here [here](https://github.com/esayyari/Fragments/blob/master/data/Biological_InfoFiles.tar.gz)
 * gene trees and species trees are avaialble [here](https://drive.google.com/open?id=1QpB9FdwMAU1bkHBS7lHfAfw-P5EdL2WZ)
 * sequences are available [here](https://drive.google.com/open?id=19Z8y5FX16Oh-GYPnAvpuw7Hmv0d0DlIZ)
 

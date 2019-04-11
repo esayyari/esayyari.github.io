@@ -46,7 +46,24 @@ set, we show the effectiveness of this simple filtering strategy.</p>
 <li><p>For doing bootstrapping we used this command <strong>runraxml-fasttree-start-boostrapping.sh</strong>, which uses <a href="http://www.microbesonline.org/fasttree/">FastTree</a> (double-precision version) internally, and the same scripts listed above.  </p>
 </li>
 </ul>
-<h3 id="miscellaneous"><a class="header-link" href="#miscellaneous"></a>Miscellaneous</h3>
+<h4 id="raxml"><a class="header-link" href="#raxml"></a>RAxML</h4>
+<pre class="hljs"><code>raxmlHPC -m <span class="hljs-tag">&lt;<span class="hljs-name">model</span>&gt;</span> -n best -s <span class="hljs-tag">&lt;<span class="hljs-name">input_phylip</span>&gt;</span> -p <span class="hljs-tag">&lt;<span class="hljs-name">seed_num</span>&gt;</span> -N 10
+
+raxmlHPC-PTHREADS -T <span class="hljs-tag">&lt;<span class="hljs-name">CPU</span>&gt;</span> -m <span class="hljs-tag">&lt;<span class="hljs-name">model</span>&gt;</span> -n best -s <span class="hljs-tag">&lt;<span class="hljs-name">input_phylip</span>&gt;</span> -p <span class="hljs-tag">&lt;<span class="hljs-name">seed_num</span>&gt;</span> -N 10</code></pre><p>where $s is the seed number, and for NA, model is GTRGAMMA, and for amino acids we let RAxML to find the best model automatically using the command:</p>
+<pre class="hljs"><code><span class="hljs-keyword">perl</span> ProteinModelSelection.pl <span class="hljs-symbol">&lt;input_phylip&gt;</span> &gt; ../bestModel.<span class="hljs-symbol">&lt;alignname&gt;</span>
+
+model=PROTGAMMA`sed -<span class="hljs-keyword">e</span> <span class="hljs-string">"s/.* //g"</span> bestModel.<span class="hljs-symbol">&lt;alignname&gt;</span>`
+</code></pre><p>Please note that for the simulated dataset we used RAxML with 2 starting trees, while for biological analysis, we used 10 starting trees.</p>
+<h4 id="fasttree"><a class="header-link" href="#fasttree"></a>FastTree</h4>
+<p>For nucleotide alignment we use this command:</p>
+<pre class="hljs"><code>fasttree -gtr -gamma -nt &lt;input_phylip&gt; &gt; fasttree<span class="hljs-selector-class">.tre</span><span class="hljs-selector-class">.best</span> <span class="hljs-number">2</span>&gt; ft<span class="hljs-selector-class">.log</span><span class="hljs-selector-class">.best</span></code></pre><p>and for protein alignment we use the default substitution model (JTT+CAT):</p>
+<pre class="hljs"><code>fasttree &lt;input_phylip&gt; &gt; fasttree<span class="hljs-selector-class">.tre</span><span class="hljs-selector-class">.best</span> <span class="hljs-number">2</span>&gt; ft<span class="hljs-selector-class">.log</span><span class="hljs-selector-class">.best</span></code></pre><h4 id="astral"><a class="header-link" href="#astral"></a>ASTRAL</h4>
+<pre class="hljs"><code>java -jar astral<span class="hljs-number">.4</span><span class="hljs-number">.11</span><span class="hljs-number">.1</span>.jar -i &lt;genetrees&gt; -o &lt;species_tree&gt; &gt; logfile <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+</code></pre><h4 id="filtering-sequences"><a class="header-link" href="#filtering-sequences"></a>Filtering sequences</h4>
+<p>We first filter sites that have less than <strong>site_threshold</strong> non-gap characters, and then filter the sequences that have less than <strong>sequence_threshold</strong> non-gap sequences. </p>
+<pre class="hljs"><code><span class="hljs-keyword">python</span> run_seqtools.<span class="hljs-keyword">py</span>  -infile <span class="hljs-symbol">&lt;input_sequence&gt;</span> -masksites <span class="hljs-symbol">&lt;site_threshold&gt;</span> -outfile <span class="hljs-symbol">&lt;site_filtered_sequence&gt;</span> &gt; <span class="hljs-symbol">&lt;logfile&gt;</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+
+<span class="hljs-keyword">python</span> run_seqtools.<span class="hljs-keyword">py</span> -infile <span class="hljs-symbol">&lt;site_filtered_sequence&gt;</span> -filterfragments <span class="hljs-symbol">&lt;sequence_threshold&gt;</span> -outfile <span class="hljs-symbol">&lt;filtered_sequence&gt;</span> &gt; <span class="hljs-symbol">&lt;logfile&gt;</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span></code></pre><h3 id="miscellaneous"><a class="header-link" href="#miscellaneous"></a>Miscellaneous</h3>
 <ul class="list">
 <li>To remove third codon postions from alignments we used <strong>remove_3rd_codon_nt_fas.sh</strong>.</li>
 <li>To convert fasta file to phylip we used <strong>convert_to_phylip.sh</strong>.</li>
@@ -65,6 +82,7 @@ Simulated dataset is available <a href="https://drive.google.com/open?id=1NuF0eG
 <p>We studied an empirical transcriptomic data set of insects consisting of 1,478 protein-coding genes of 144 taxa, where
 27% of the alignment is gaps (Misof et al. 2014). We now share the biological sequences, gene trees and species trees:</p>
 <ul class="list">
+<li>RAxML log files are available here <a href="https://github.com/esayyari/Fragments/blob/master/data/Biological_InfoFiles.tar.gz">here</a></li>
 <li>gene trees and species trees are avaialble <a href="https://drive.google.com/open?id=1QpB9FdwMAU1bkHBS7lHfAfw-P5EdL2WZ">here</a></li>
 <li>sequences are available <a href="https://drive.google.com/open?id=19Z8y5FX16Oh-GYPnAvpuw7Hmv0d0DlIZ">here</a></li>
 </ul>
