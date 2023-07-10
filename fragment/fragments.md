@@ -1,3 +1,6 @@
+---
+title: Fragmentary gene sequences negatively impact gene tree and species tree reconstruction
+---
 # Fragmentary gene sequences negatively impact gene tree and species tree reconstruction
 
 ## Abstract
